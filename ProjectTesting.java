@@ -5,14 +5,17 @@
     import java.awt.GridBagConstraints;
     import java.awt.GridBagLayout;
     import java.awt.Insets;
-    import javax.swing.JButton;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
     import javax.swing.JCheckBox;
     import javax.swing.JFrame;
     import javax.swing.JLabel;
     import javax.swing.JPanel;
     import javax.swing.JRadioButton;
 
-    public class ProjectTesting extends JFrame {
+    public class ProjectTesting extends JFrame implements ActionListener{
 
         /**
          * 
@@ -80,9 +83,7 @@
            
            
            // adding parameter panel 
-           choicePanel.add(paramPanel); 
-           
-            
+           choicePanel.add(paramPanel);
            // adding statistics panel 
            choicePanel.add(statsPanel);
            
@@ -99,8 +100,9 @@
             
                      
             
-            
-            
+            exit.addActionListener(this); 
+                    
+                         
             
             
             
@@ -123,8 +125,19 @@
             ProjectTesting test = new ProjectTesting(); 
             test.setVisible(true); 
         }
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            // TODO Auto-generated method stub
+          
+            if (e.getSource() == exit)
+            {
+            System.exit(0);
+            
+        }
         
         
         
+    }
     }
 

@@ -32,4 +32,7 @@ public class DataTable extends JPanel{
         
         this.add(scroll); 
     }
+    
+    
+    
 }
