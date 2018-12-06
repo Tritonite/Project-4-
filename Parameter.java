@@ -48,13 +48,11 @@ public class Parameter extends JPanel
     // Parameter title   
     add(label2); 
     
-    
     // tair placement
    
     add(tair); 
-    // ta9m placement
     
-    
+   // ta9m placement
     add(ta9m); 
     // srad placement
   
@@ -67,6 +65,7 @@ public class Parameter extends JPanel
     // pres placement 
 
     add(pres); 
+    
     
    
     
