@@ -219,7 +219,7 @@ public class MapData
      * @throws IOException
      *             throws IOException
      */
-    public void parseFile() throws IOException
+    public void parseFile(String fileName) throws IOException
     {
 
         // Observation array called sradData

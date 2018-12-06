@@ -1,0 +1,81 @@
+{
+    "Lab Section": 11, 
+    "Last Modified": "2018-12-06", 
+    "OU ID": 113232972,
+    "OU EMAIL": "Triston.a.luzanta-1@ou.edu",
+    "Tasks": [
+        {
+            "Description": "MesonetFrame class ",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 75 
+        },
+     
+        {
+            "Description": "MesonetFrame Constructor",
+            "Estimated Time (Minutes)": 10,
+            "Actual Time (Minutes)": 10
+        },
+        
+  		{
+            "Description": "calculate.addActionListener",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 70 
+        },
+       {
+            "Description": "exit.addActionListener",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 15
+        },
+        {
+            "Description": "calculate.addActionListener",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 20 
+        },
+        {
+            "Description": "Parameter class",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 20 
+        },
+        {
+            "Description": "Parameter constructor",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 20 
+        },
+        {
+            "Description": "StatisticsPanel",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 20 
+        },
+        {
+            "Description": "StatisticsPanel constructor",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 20 
+        },
+    	{
+            "Description": "DataTable class",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 20 
+        },
+        {
+            "Description": "DataTable constructor ",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 20 
+        },
+        {
+            "Description": "dataFetch method",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 20 
+        },
+        
+     	{
+            "Description": "MapData geteStatistics",
+            "Estimated Time (Minutes)": 15,
+            "Actual Time (Minutes)": 20 
+        }
+     
+     ]
+ }
+ 
+ 
+        
+			
