@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,7 +17,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 /**
  * This class creates a Mesonet Calculator GUI that in a BorderLayout format  that displays calculated data given on a file. 
  * @author Triston Luzanta with help from Robinshin Shin, and Dan Tran
@@ -36,7 +34,7 @@ public class MesonetFrame extends JFrame
     // Panel for the South layout 
     JPanel panel3 = new JPanel(new GridBagLayout());
 
-  
+
 
     // Calculation and exit buttons
     JButton calculate = new JButton("Calculate");
@@ -46,10 +44,13 @@ public class MesonetFrame extends JFrame
     MapData tests;
     String fileName;
 
-    public MesonetFrame() throws IOException
+    /*
+     * Builds and operates the GUI 
+     */
+    public MesonetFrame(String title) throws IOException
     {
         // title
-        super("Oklahoma Mesonet - Statistics Calculator");
+        super(title);
         // Setting the default size 
         setSize(1000, 350);
        
@@ -72,7 +73,7 @@ public class MesonetFrame extends JFrame
         Parameter paramPanel = new Parameter();
         // Statistics panel object
         StatisticsPanel statsPanel = new StatisticsPanel();
-        // New Panel to add parameter and statistics
+        // New Panel to add parameter and statistics panels 
         JPanel choicePanel = new JPanel();
         // Table object panel
         DataTable displayTable = new DataTable();
@@ -108,21 +109,23 @@ public class MesonetFrame extends JFrame
 
         
         /*
-         * If this button is selected then the result 
+         * If this button is selected then you will the result corresponded to that measurement/statistics. 
          */
         calculate.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
-
+                //  TAIR checkbox is selected 
                 if (paramPanel.tair.isSelected())
                 {
+                    // Retrieve the maximum TAIR statistic
                     if (statsPanel.max.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "TAIR");
 
                         displayTable.Deftable.addRow(data);
                     }
+                    // Retrieve the minimum TAIR statistic
                      if (statsPanel.min.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "TAIR");
@@ -130,6 +133,7 @@ public class MesonetFrame extends JFrame
                         displayTable.Deftable.addRow(data);
                     }
 
+                     // Retrieve the average TAIR statistic
                      if (statsPanel.avg.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.AVERAGE, "TAIR");
@@ -137,8 +141,10 @@ public class MesonetFrame extends JFrame
                         displayTable.Deftable.addRow(data);
                     }
                 }
+                //  TA9M checkbox is selected
                  if (paramPanel.ta9m.isSelected())
                 {
+                     // Retrieve the TA9M maximum statistic
                     if (statsPanel.max.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "TA9M");
@@ -146,6 +152,7 @@ public class MesonetFrame extends JFrame
                         displayTable.Deftable.addRow(data);
 
                     }
+                    // Retrieve the TA9M minimum statistic
                      if (statsPanel.min.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "TA9M");
@@ -153,7 +160,8 @@ public class MesonetFrame extends JFrame
                         displayTable.Deftable.addRow(data);
 
                     }
-
+                     
+                     // Retrieve the TA9M average statistic 
                      if (statsPanel.avg.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.AVERAGE, "TA9M");
@@ -162,8 +170,10 @@ public class MesonetFrame extends JFrame
 
                     }
                 }
+                 //  SRAD checkbox is selected 
                 if (paramPanel.srad.isSelected())
                 {
+                    // Retrieve the SRAD maximum statistic 
                     if (statsPanel.max.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "SRAD");
@@ -171,6 +181,7 @@ public class MesonetFrame extends JFrame
                         displayTable.Deftable.addRow(data);
 
                     }
+                    // Retrieve the SRAD minimum statistic 
                      if (statsPanel.min.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "SRAD");
@@ -178,7 +189,7 @@ public class MesonetFrame extends JFrame
                         displayTable.Deftable.addRow(data);
 
                     }
-
+                     // Retrieve the SRAD average statistic 
                      if (statsPanel.avg.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.AVERAGE, "SRAD");
@@ -187,8 +198,10 @@ public class MesonetFrame extends JFrame
 
                     }
                 }
+                //  WSPD checkbox is selected 
                 if (paramPanel.wspd.isSelected())
                 {
+                    // Retrieve the WSPD maximum statistic 
                     if (statsPanel.max.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "WSPD");
@@ -196,6 +209,7 @@ public class MesonetFrame extends JFrame
                         displayTable.Deftable.addRow(data);
 
                     }
+                    // Retrieve the WSPD minimum statistic 
                      if (statsPanel.min.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "WSPD");
@@ -204,6 +218,7 @@ public class MesonetFrame extends JFrame
 
                     }
 
+                     // Retrieve the WSPD average statistic 
                      if (statsPanel.avg.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.AVERAGE, "WSPD");
@@ -212,8 +227,10 @@ public class MesonetFrame extends JFrame
 
                     }
                 }
+                // PRES check box is selected 
                 if (paramPanel.pres.isSelected())
                 {
+                    // Retrieve the PRES maximum statistic 
                     if (statsPanel.max.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "PRES");
@@ -221,6 +238,7 @@ public class MesonetFrame extends JFrame
                         displayTable.Deftable.addRow(data);
 
                     }
+                    // Retrieve the PRES minimum statistic 
                      if (statsPanel.min.isSelected())
                     {
                         String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "PRES");
@@ -229,6 +247,7 @@ public class MesonetFrame extends JFrame
 
                     }
 
+                     // Retrieve the PRES average statistic 
                      if (statsPanel.avg.isSelected())
                     {
 
@@ -241,7 +260,9 @@ public class MesonetFrame extends JFrame
             }
 
         });
-        
+        /**
+         * GUI will close if exit button is executed. 
+         */
         exit.addActionListener(new ActionListener()
                 {
             public void actionPerformed(ActionEvent e)
@@ -256,24 +277,32 @@ public class MesonetFrame extends JFrame
                 });
        
     }
+    /*
+     * This class sets up the File bar in the GUI. 
+     */
     class BarMenu extends JMenuBar
     {
         /**
-         * 
+         *  Defualt UID
          */
         private static final long serialVersionUID = 1L;
 
         public BarMenu()
         {
+            // Sets the File menu tile as "File"
             JMenu file = new JMenu("File"); 
+            // Subcomponents of the File menu bar 
             JMenuItem dataFile = new JMenuItem("Open Data File"); 
             JMenuItem exit = new JMenuItem("Exit"); 
             JFileChooser fileChooser = new JFileChooser();
+            // Adding the subcomponents to the main component 
             file.add(dataFile); 
             file.add(exit); 
            add(file); 
 
-        
+        /*
+         * If this button is executed then 
+         */
         dataFile.addActionListener(new ActionListener() 
         {
     public void actionPerformed(ActionEvent e)
@@ -344,6 +373,6 @@ if (value == JFileChooser.APPROVE_OPTION)
     }
     public static void main(String[] args) throws IOException
     {
-        new MesonetFrame();
+        new MesonetFrame("Oklahoma Mesonet - Statistics Calculator");
     }
 }
