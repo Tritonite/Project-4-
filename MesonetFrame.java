@@ -20,7 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 /**
- * This class creates a Mesonet Calculator GUI that uses a BorderLayout that displays calculated data given on a file. 
+ * This class creates a Mesonet Calculator GUI that in a BorderLayout format  that displays calculated data given on a file. 
  * @author Triston Luzanta with help from Robinshin Shin, and Dan Tran
  * @version 2018-12-6
  *
@@ -31,24 +31,14 @@ public class MesonetFrame extends JFrame
     // Default UID
     private static final long serialVersionUID = 1L;
 
-    // Panel for the North layout
+    // Panel for the North 
     JPanel panel1 = new JPanel();
     // Panel for the South layout 
     JPanel panel3 = new JPanel(new GridBagLayout());
 
-    // checkboxes for datatypes
-    JCheckBox tair = new JCheckBox("TAIR");
-    JCheckBox ta9m = new JCheckBox("TA9M");
-    JCheckBox srad = new JCheckBox("SRAD");
-    JCheckBox wspd = new JCheckBox("WSPD");
-    JCheckBox pres = new JCheckBox("PRES");
+  
 
-    // buttons for measurements
-    JRadioButton min = new JRadioButton("MINIMUM");
-    JRadioButton max = new JRadioButton("MAXIMUM");
-    JRadioButton avg = new JRadioButton("AVERAGE");
-
-    // calculation and exit buttons
+    // Calculation and exit buttons
     JButton calculate = new JButton("Calculate");
     JButton exit = new JButton("Exit");
     
@@ -63,56 +53,63 @@ public class MesonetFrame extends JFrame
         // Setting the default size 
         setSize(1000, 350);
        
-
+        // Setting the Layout 
         setLayout(new BorderLayout());
 
-        // file bar
+        // Creating a file bar
         BarMenu test1 = new BarMenu();
+        // Setting the file bar 
         setJMenuBar(test1);
 
-        // spacing for calculate and exit buttons
+        // Spacing for calculate and exit buttons
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 10);
 
-        // title for north panel
+        // Title for north panel
         JLabel label = new JLabel("Mesonet - We don't set records, we report them!");
 
-        // parameter panel object
+        // Parameter panel object
         Parameter paramPanel = new Parameter();
-        // statistics panel object
+        // Statistics panel object
         StatisticsPanel statsPanel = new StatisticsPanel();
         // New Panel to add parameter and statistics
         JPanel choicePanel = new JPanel();
-        // table object panel
+        // Table object panel
         DataTable displayTable = new DataTable();
 
-        // adding parameter panel
+        // Adding parameter panel
         choicePanel.add(paramPanel);
-        // adding statistics panel
+        // Adding statistics panel
         choicePanel.add(statsPanel);
-
+        
+        // Setting the North panel backround to light gray. 
         panel1.setBackground(Color.LIGHT_GRAY);
+        // Adding that label to the North panel 
         panel1.add(label);
 
-        // Calculate and Exit button placements
+       // Sets the South panel bacround to light gray. 
         panel3.setBackground(Color.LIGHT_GRAY);
         panel3.add(calculate);
+        // Calculate and Exit button placements
         gbc.gridx = 5;
         gbc.gridy = 0;
         panel3.add(exit, gbc);
 
-        // Displacements of information
+        // Displacements of information and layout of the GUI
         add(panel1, BorderLayout.NORTH);
         add(choicePanel, BorderLayout.WEST);
         add(displayTable, BorderLayout.CENTER);
         add(panel3, BorderLayout.SOUTH);
         
+        // Displays the GUI 
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
 
         
-
+        /*
+         * If this button is selected then the result 
+         */
         calculate.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
