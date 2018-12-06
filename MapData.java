@@ -23,6 +23,8 @@ import java.io.FileReader;
 public class MapData
 {
 
+    
+
     // calculations null if it hits 10 or more
     private final int NUMBER_OF_MISSING_OBSERVATIONS = 10;
 
@@ -245,24 +247,8 @@ public class MapData
 
         String[] info = strg.split("\\s+");
         // Reads each line and stores the data types in their corresponding array list.
-       /** while (strg != null)
-        {
-            info = strg.trim().split("\\s+");
-
-            // added the index number and stid of each of the corresponding data types
-            tairData.add(
-                    new Observation(Double.parseDouble(info[getIndexOfString(TAIR)]), info[getIndexOfString(STID)]));
-            sradData.add(
-                    new Observation(Double.parseDouble(info[getIndexOfString(SRAD)]), info[getIndexOfString(STID)]));
-            ta9mData.add(
-                    new Observation(Double.parseDouble(info[getIndexOfString(TA9M)]), info[getIndexOfString(STID)]));
-
-            numberOfStations++;
-            strg = br.readLine();
-
-        }
-        **/
-        do 
+      
+        while(strg != null)
         {
             info = strg.trim().split("\\s+"); 
             tairData.add(
@@ -281,7 +267,7 @@ public class MapData
             strg = br.readLine();
 
         }
-        while (strg != null); 
+        
 
         // Intialized hashmap of dataCatalog
         this.prepareDataCatalog();
@@ -290,6 +276,8 @@ public class MapData
         dataCatalog.put(TAIR, tairData);
         dataCatalog.put(SRAD, sradData);
         dataCatalog.put(TA9M, ta9mData);
+        dataCatalog.put(WSPD, wspdData);
+        dataCatalog.put(PRES, presData);
 
         // Calculates the statistics of the datatypes
         calculateStatistics();
@@ -336,6 +324,8 @@ public class MapData
         sradData = dataCatalog.get(SRAD);
         tairData = dataCatalog.get(TAIR);
         ta9mData = dataCatalog.get(TA9M);
+        wspdData = dataCatalog.get(WSPD); 
+        presData = dataCatalog.get(PRES); 
 
         double maxData = -Double.MAX_VALUE; // compares the value to the negative maximum value holder
         int countMax = 0;
@@ -628,9 +618,9 @@ public class MapData
 
         else
         {
-            dataMax.put(PRES, new Statistics(0.0, "Error", utcDateTime, (numberOfStations - loss), StatsType.MAXIMU));
-            dataMin.put(PRES, new Statistics(0.0, "Error", utcDateTime, (numberOfStations - loss), StatsType.MINIMUM));
-            dataAvg.put(PRES, new Statistics(0.0, "Error", utcDateTime, (numberOfStations - loss), StatsType.AVERAGE));
+            dataMax.put(WSPD, new Statistics(0.0, "Error", utcDateTime, (numberOfStations - loss), StatsType.MAXIMU));
+            dataMin.put(WSPD, new Statistics(0.0, "Error", utcDateTime, (numberOfStations - loss), StatsType.MINIMUM));
+            dataAvg.put(WSPD, new Statistics(0.0, "Error", utcDateTime, (numberOfStations - loss), StatsType.AVERAGE));
         }
 
         countMax = 0;
