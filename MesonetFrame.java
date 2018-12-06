@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -14,9 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import MapData.StatsType;
-
-public class MesonetFrame extends JFrame 
+public class MesonetFrame extends JFrame
 {
 
     /**
@@ -43,7 +42,7 @@ public class MesonetFrame extends JFrame
     JButton calculate = new JButton("Calculate");
     JButton exit = new JButton("Exit");
 
-    public MesonetFrame()
+    public MesonetFrame() throws IOException
     {
         // title
         super("Oklahoma Mesonet - Statistics Calculator");
@@ -93,53 +92,57 @@ public class MesonetFrame extends JFrame
         add(displayTable, BorderLayout.CENTER);
         add(panel3, BorderLayout.SOUTH);
 
+        MapData tests = new MapData(2018, 8, 30, 17, 45, "data");
+        tests.parseFile();
+
         calculate.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
+
                 if (paramPanel.tair.isSelected())
                 {
                     if (statsPanel.max.isSelected())
                     {
-                          String [] data = displayTable.dataFetch(MapData data, StatsType.MAXIMU, "TAIR");  
-                          
-                          displayTable.Deftable.addRow(data);
+                        String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "TAIR");
+
+                        displayTable.Deftable.addRow(data);
                     }
-                    else if (statsPanel.min.isSelected())
+                     if (statsPanel.min.isSelected())
                     {
-                        String [] data = displayTable.dataFetch(MapData data, StatsType.MINIMUM, "TAIR");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "TAIR");
+
                         displayTable.Deftable.addRow(data);
                     }
 
-                    else if (statsPanel.avg.isSelected())
+                     if (statsPanel.avg.isSelected())
                     {
-                        String [] data = displayTable.dataFetch(MapData data, StatsType.AVERAGE, "TAIR");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.AVERAGE, "TAIR");
+
                         displayTable.Deftable.addRow(data);
                     }
                 }
-                else if (paramPanel.ta9m.isSelected())
+                 if (paramPanel.ta9m.isSelected())
                 {
                     if (statsPanel.max.isSelected())
                     {
-                        String [] data = displayTable.dataFetch(MapData data, StatsType.MAXIMU, "TA9M");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "TA9M");
+
                         displayTable.Deftable.addRow(data);
 
                     }
-                    else if (statsPanel.min.isSelected())
+                     if (statsPanel.min.isSelected())
                     {
-    String [] data = displayTable.dataFetch(MapData data, StatsType.MINIMUM, "TA9M");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "TA9M");
+
                         displayTable.Deftable.addRow(data);
 
                     }
 
-                    else if (statsPanel.avg.isSelected())
+                     if (statsPanel.avg.isSelected())
                     {
-    String [] data = displayTable.dataFetch(MapData data, StatsType.AVERAGE, "TA9M");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.AVERAGE, "TA9M");
+
                         displayTable.Deftable.addRow(data);
 
                     }
@@ -148,25 +151,24 @@ public class MesonetFrame extends JFrame
                 {
                     if (statsPanel.max.isSelected())
                     {
-    String [] data = displayTable.dataFetch(MapData data, StatsType.MAXIMU, "SRAD");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "SRAD");
+
                         displayTable.Deftable.addRow(data);
-                        
+
                     }
-                    else if (statsPanel.min.isSelected())
+                     if (statsPanel.min.isSelected())
                     {
-String [] data = displayTable.dataFetch(MapData data, StatsType.MINIMUM, "SRAD");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "SRAD");
+
                         displayTable.Deftable.addRow(data);
-                        
+
                     }
 
-                    else if (statsPanel.avg.isSelected())
+                     if (statsPanel.avg.isSelected())
                     {
-String [] data = displayTable.dataFetch(MapData data, StatsType.AVERAGE, "SRAD");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.AVERAGE, "SRAD");
+
                         displayTable.Deftable.addRow(data);
-                        
 
                     }
                 }
@@ -174,27 +176,24 @@ String [] data = displayTable.dataFetch(MapData data, StatsType.AVERAGE, "SRAD")
                 {
                     if (statsPanel.max.isSelected())
                     {
-String [] data = displayTable.dataFetch(MapData data, StatsType.MAXIMU, "WSPD");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "WSPD");
+
                         displayTable.Deftable.addRow(data);
-                        
 
                     }
-                    else if (statsPanel.min.isSelected())
+                     if (statsPanel.min.isSelected())
                     {
-String [] data = displayTable.dataFetch(MapData data, StatsType.MINIMUM, "WSPD");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "WSPD");
+
                         displayTable.Deftable.addRow(data);
-                        
 
                     }
 
-                    else if (statsPanel.avg.isSelected())
+                     if (statsPanel.avg.isSelected())
                     {
-String [] data = displayTable.dataFetch(MapData data, StatsType.AVERAGE, "WSPD");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.AVERAGE, "WSPD");
+
                         displayTable.Deftable.addRow(data);
-                        
 
                     }
                 }
@@ -202,40 +201,51 @@ String [] data = displayTable.dataFetch(MapData data, StatsType.AVERAGE, "WSPD")
                 {
                     if (statsPanel.max.isSelected())
                     {
-String [] data = displayTable.dataFetch(MapData data, StatsType.MAXIMU, "PRES");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.MAXIMU, "PRES");
+
                         displayTable.Deftable.addRow(data);
-                        
-                    }
-                    else if (statsPanel.min.isSelected())
-                    {
-String [] data = displayTable.dataFetch(MapData data, StatsType.MINIMUM, "PRES");  
-                        
-                        displayTable.Deftable.addRow(data);
-                        
 
                     }
+                     if (statsPanel.min.isSelected())
+                    {
+                        String[] data = displayTable.dataFetch(tests, StatsType.MINIMUM, "PRES");
 
-                    else if (statsPanel.avg.isSelected())
+                        displayTable.Deftable.addRow(data);
+
+                    }
+
+                     if (statsPanel.avg.isSelected())
                     {
 
-String [] data = displayTable.dataFetch(MapData data, StatsType.AVERAGE, "PRES");  
-                        
+                        String[] data = displayTable.dataFetch(tests, StatsType.AVERAGE, "PRES");
+
                         displayTable.Deftable.addRow(data);
-                        
+
                     }
                 }
             }
 
         });
+        
+        exit.addActionListener(new ActionListener()
+                {
+            public void actionPerformed(ActionEvent e)
+            { 
+                if (e.getSource() == exit)
+                {
+                    System.exit(0);
+                }
+            }
+
+            
+                });
+       
     }
 
-    public static void main(String arg[])
+    public static void main(String arg[]) throws IOException
     {
-        ProjectTesting test = new ProjectTesting();
+        MesonetFrame test = new MesonetFrame();
         test.setVisible(true);
     }
-
-   
 
 }
