@@ -6,24 +6,34 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-
+/**
+ * This class creates a Mesonet Calculator GUI that uses a BorderLayout that displays calculated data given on a file. 
+ * @author Triston Luzanta with help from Robinshin Shin, and Dan Tran
+ * @version 2018-12-6
+ *
+ */
 public class MesonetFrame extends JFrame
 {
 
-    /**
-     * 
-     */
+    // Default UID
     private static final long serialVersionUID = 1L;
 
+    // Panel for the North layout
     JPanel panel1 = new JPanel();
+    // Panel for the South layout 
     JPanel panel3 = new JPanel(new GridBagLayout());
 
     // checkboxes for datatypes
@@ -41,13 +51,18 @@ public class MesonetFrame extends JFrame
     // calculation and exit buttons
     JButton calculate = new JButton("Calculate");
     JButton exit = new JButton("Exit");
+    
+    // Initializing MapData and a String for file testing 
+    MapData tests;
+    String fileName;
 
     public MesonetFrame() throws IOException
     {
         // title
         super("Oklahoma Mesonet - Statistics Calculator");
+        // Setting the default size 
         setSize(1000, 350);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+       
 
         setLayout(new BorderLayout());
 
@@ -91,9 +106,12 @@ public class MesonetFrame extends JFrame
         add(choicePanel, BorderLayout.WEST);
         add(displayTable, BorderLayout.CENTER);
         add(panel3, BorderLayout.SOUTH);
+        
+        this.setVisible(true);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setResizable(false);
 
-        MapData tests = new MapData(2018, 8, 30, 17, 45, "data");
-        tests.parseFile();
+        
 
         calculate.addActionListener(new ActionListener()
         {
@@ -241,11 +259,94 @@ public class MesonetFrame extends JFrame
                 });
        
     }
-
-    public static void main(String arg[]) throws IOException
+    class BarMenu extends JMenuBar
     {
-        MesonetFrame test = new MesonetFrame();
-        test.setVisible(true);
-    }
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 1L;
 
+        public BarMenu()
+        {
+            JMenu file = new JMenu("File"); 
+            JMenuItem dataFile = new JMenuItem("Open Data File"); 
+            JMenuItem exit = new JMenuItem("Exit"); 
+            JFileChooser fileChooser = new JFileChooser();
+            file.add(dataFile); 
+            file.add(exit); 
+           add(file); 
+
+        
+        dataFile.addActionListener(new ActionListener() 
+        {
+    public void actionPerformed(ActionEvent e)
+    {
+        fileChooser.setCurrentDirectory(new File("C:\\Users\\Triston\\eclipse-workspace\\Project 4\\data"));
+        if(e.getSource() == dataFile)
+        {
+            int value = fileChooser.showOpenDialog(BarMenu.this);
+
+            int YEAR = 0;
+            int MONTH = 0; 
+            int DAY = 0; 
+            int HOUR = 0;
+            int MINUTE = 0;
+
+            String directory = "";
+if (value == JFileChooser.APPROVE_OPTION)
+            {
+                String fileA = fileChooser.getSelectedFile().getName();
+                directory = fileChooser.getCurrentDirectory().getName();
+
+                String name = directory + "/" + fileA;
+                fileName = name;
+
+                String[] parts = fileA.split("");
+
+
+                String numbers = parts[0] + parts[1] + parts[2] + parts[3];
+                YEAR = Integer.parseInt(numbers);
+
+
+                numbers = parts[4] + parts[5];
+                MONTH = Integer.parseInt(numbers);
+
+                numbers = parts[6] + parts[7];
+                DAY = Integer.parseInt(numbers);
+
+                numbers = parts[8] + parts[9];
+                HOUR = Integer.parseInt(numbers);
+
+                numbers = parts[10] + parts[11];
+                MINUTE = Integer.parseInt(numbers);
+
+
+                try 
+                {
+                    tests = new MapData(YEAR,MONTH,DAY,HOUR,MINUTE, directory);
+                    tests.parseFile(fileName);
+                } 
+                catch (IOException e1) 
+                {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+            }
+        }
+    }
+        });
+       exit.addActionListener(new ActionListener()
+               {
+                   public void actionPerformed(ActionEvent e)
+                   {
+                       System.exit(0);
+                   }
+               });
+    }
+    }
+    public static void main(String[] args) throws IOException
+    {
+        new MesonetFrame();
+    }
 }
